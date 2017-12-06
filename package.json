@@ -1,0 +1,7 @@
+{
+  "name": "music_app",
+  "private": true,
+  "dependencies": {
+    "normalize.css": "^7.0.0"
+  }
+}
