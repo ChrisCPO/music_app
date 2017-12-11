@@ -1,0 +1,4 @@
+.search-form
+  = simple_form_for @search, url: search_path, method: :post do |form|
+    = form.input :query, label: false
+    = form.submit "Search"
