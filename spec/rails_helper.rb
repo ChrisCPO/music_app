@@ -26,4 +26,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 end
 
+Capybara::Screenshot.prune_strategy = :keep_last_run
+
 ActiveRecord::Migration.maintain_test_schema!
