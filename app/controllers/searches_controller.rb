@@ -4,8 +4,8 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new
-    @search.find(search_params)
+    @search = Search.new(search_params)
+    @search.find
 
     render :show
   end
@@ -13,6 +13,6 @@ class SearchesController < ApplicationController
   private
 
   def search_params
-    params[:query]
+    params.require(:search).permit(:query)
   end
 end

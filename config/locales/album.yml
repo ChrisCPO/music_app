@@ -1,0 +1,5 @@
+en:
+  albums:
+    show:
+      by: "by "
+      track: "track %{number}: "

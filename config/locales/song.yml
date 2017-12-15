@@ -1,0 +1,5 @@
+en:
+  songs:
+    show:
+      artist: "artist: %{name}"
+      album: "part of: %{name}"

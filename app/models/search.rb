@@ -1,15 +1,10 @@
 class Search
   include ActiveModel::Model
   attr_writer :results
-  attr_reader :query
+  attr_accessor :query
 
-  def find(query)
-    self.query = query
-    self.results = find_results
-  end
-
-  def query=(query)
-    @query = "%#{query}%"
+  def find
+    @results = find_results
   end
 
   def results
@@ -19,6 +14,12 @@ class Search
   private
 
   def find_results
-    Song.where("title ILIKE ?", query)
+    Song.where("title ILIKE ?", wrapped_query)
+  end
+
+  def wrapped_query
+    if query.present?
+      "%#{query}%"
+    end
   end
 end

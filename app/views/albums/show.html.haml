@@ -1,0 +1,10 @@
+.album
+  %h1= @album.title
+  = t(".by") \
+  = link_to @album.artist.full_name, artist_path(@album.artist)
+  %ol
+  - @album.songs.each.with_index do |song, index|
+    - index += 1
+    %li
+      = t(".track", number: index)
+      = link_to song.title, song_path(song)
