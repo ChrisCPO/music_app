@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User can Search" do
+feature "User can Search", js: true do
   feature "a user can search for a song" do
     context "nil search produces no results" do
       it "returns a song" do

@@ -1,6 +1,0 @@
-= render "search_form"
-
-.search-results
-  %h1= t(".results")
-  %h4= t(".results_length", length: @search.results.count)
-  = render @search.results
