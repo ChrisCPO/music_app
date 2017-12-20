@@ -3,11 +3,11 @@ class SearchesController < ApplicationController
     @search = Search.new
   end
 
-  def create
+  def index
     @search = Search.new(search_params)
     @search.find
 
-    render :show
+    render partial: "searches/results", search: @search
   end
 
   private
