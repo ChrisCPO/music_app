@@ -3,3 +3,5 @@ en:
     show:
       artist: "artist: %{name}"
       album: "part of: %{name}"
+      by: "by: %{link}"
+      from: "from: %{link}"
