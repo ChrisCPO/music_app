@@ -3,6 +3,13 @@ class Search
   attr_writer :results
   attr_accessor :query
 
+  QUERY_COLUMNS = [
+    "songs.title",
+    "albums.title",
+    "artists.first_name",
+    "artists.last_name",
+  ]
+
   def find
     @results = find_results
   end
@@ -14,12 +21,14 @@ class Search
   private
 
   def find_results
-    Song.where("title ILIKE ?", wrapped_query)
+    ilike = " ILIKE ?"
+    full_query = QUERY_COLUMNS.join(" || ' ' || ") + ilike
+    Song.joins(:album).joins(:artist).where(full_query, wrapped_query)
   end
 
   def wrapped_query
     if query.present?
-      "%#{query}%"
+      "%#{query.squish}%"
     end
   end
 end
