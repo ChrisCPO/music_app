@@ -1,23 +1,24 @@
 $(document).ready(function(){
-  var $searchForm = $("#general-search");
+  let $searchForm = $("#general-search");
 
-  var updateSearchResults = function(response) {
+  let updateSearchResults = function(response) {
     $resultsContainer = $("#search-results-container")
     $resultsContainer.html(response);
   };
 
-  var disableSearchButton = function(setTo) {
-    var $searchFormButton = $("#general-search-button");
+  let disableSearchButton = function(setTo) {
+    let $searchFormButton = $("#general-search-button");
     $searchFormButton.prop("disabled", setTo);
   };
 
-  var perform = function() {
+  let perform = function(data) {
     disableSearchButton(true)
 
-    var request = $.ajax({
+    let queryData = data || $searchForm.serialize();
+    let request = $.ajax({
       type: "GET",
       url: $searchForm.attr("action"),
-      data: $searchForm.serialize(),
+      data: queryData,
     });
 
     request.done(updateSearchResults);
@@ -27,14 +28,21 @@ $(document).ready(function(){
     });
   };
 
-  var submitForm = function(event) {
+  let submitForm = function(event) {
     event.preventDefault();
 
     let query = $searchForm.find("#search_query").val()
     if( query != "" ) {
-      perform()
+      history.pushState(null, "",`?${$searchForm.serialize()}`);
+      perform();
     };
   };
+
+  $(window).bind("popstate", function() {
+    let query = location.search.replace("?", "");
+    perform(query);
+    $("#search_query").val();
+  });
 
   $searchForm.on("submit", submitForm);
 });

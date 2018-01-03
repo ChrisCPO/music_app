@@ -1,5 +1,10 @@
 class SearchesController < ApplicationController
   def new
+    if search_params
+      @search = Search.new(search_params)
+      @search.find
+      render :index
+    end
     @search = Search.new
   end
 
@@ -13,6 +18,8 @@ class SearchesController < ApplicationController
   private
 
   def search_params
-    params.require(:search).permit(:query)
+    if params[:search]
+      params.require(:search).permit(:query)
+    end
   end
 end

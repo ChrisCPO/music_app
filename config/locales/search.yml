@@ -2,4 +2,4 @@ en:
   searches:
     show:
       results: "Results"
-      results_length: "%{length} of possible results"
+      results_length: "%{length} of possible results for '%{for}'"

@@ -10,8 +10,8 @@ FactoryGirl.define do
     end
 
     after(:create) do |artist, evalulator|
-      albums = create_list(:album, evalulator.album_count, :with_songs)
-      artist.albums << albums
+      create_list(:album, evalulator.album_count, :with_songs, artist: artist)
+      artist.reload
     end
   end
 end

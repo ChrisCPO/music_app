@@ -1,6 +1,6 @@
 .container#search-results-container
   .subheader
     %h1= t("searches.show.results")
-    %h4= t("searches.show.results_length", length: @search.results.count)
+    %h4= t("searches.show.results_length", length: @search.results.count, for: @search.query)
   .results
   = render @search.results

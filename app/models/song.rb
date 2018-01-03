@@ -3,4 +3,6 @@ class Song < ApplicationRecord
   has_one :artist, through: :album
 
   validates :title, presence: :true
+  validates :artist, presence: :true
+  validates :album, presence: :true
 end

@@ -2,6 +2,6 @@ en:
   songs:
     show:
       artist: "artist: %{name}"
-      album: "part of: %{name}"
+      album: "from album: %{name}"
       by: "by:"
       from: "from:"
