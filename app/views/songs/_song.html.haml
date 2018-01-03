@@ -1,7 +1,9 @@
 .song
   %h1= link_to song.title, song_path(song)
   .result-info
-    - artist_link = link_to song.artist.full_name, artist_path(song.artist)
-    - album_link = link_to song.album.title, album_path(song.album)
-    %p=  t("songs.show.by", link: artist_link).html_safe
-    %p=  t("songs.show.from", link: album_link).html_safe
+    %p
+      = t("songs.show.by") \
+      = link_to song.artist.full_name, artist_path(song.artist)
+    %p
+      = t("songs.show.from") \
+      = link_to song.album.title, album_path(song.album)
