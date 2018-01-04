@@ -41,7 +41,6 @@ $(document).ready(function(){
   $(window).bind("popstate", function() {
     let query = location.search.replace("?", "");
     perform(query);
-    $("#search_query").val();
   });
 
   $searchForm.on("submit", submitForm);
