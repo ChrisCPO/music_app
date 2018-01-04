@@ -14,9 +14,7 @@ describe Search do
 
     context "search quirks" do
       it "returns song matching query with random spaces" do
-        artist = create(:artist, :with_album)
-        song = create(:song, title: "foo bar")
-        artist.albums.first.songs << song
+        song = create(:song, :has_artist, title: "foo bar")
         query = "    foo     bar "
 
         search = Search.new(query: query)
@@ -69,7 +67,7 @@ describe Search do
 
     context "query is empty" do
       it "returns nothing" do
-        song = create(:song)
+        song = create(:song, :has_artist)
 
         search = Search.new(query: "")
         results = search.find
@@ -80,9 +78,7 @@ describe Search do
 
     context "titles are similar to query" do
       it "returns matching songs" do
-        artist = create(:artist, :with_album)
-        song = create(:song, title: "Dave Mathews Band")
-        artist.albums.first.songs << song
+        song = create(:song, :has_artist, title: "Dave Mathews Band")
 
         search = Search.new(query: "Mathews")
         results = search.find
@@ -92,9 +88,7 @@ describe Search do
 
       context "case insensitive" do
         it "returns matching songs" do
-          artist = create(:artist, :with_album)
-          song = create(:song, title: "Dave Mathews Band")
-          artist.albums.first.songs << song
+          song = create(:song, :has_artist, title: "Dave Mathews Band")
 
           search = Search.new(query: "mathews")
           results = search.find
@@ -103,9 +97,7 @@ describe Search do
         end
 
         it "returns matching songs" do
-          artist = create(:artist, :with_album)
-          song = create(:song, title: "Dave Mathews Band")
-          artist.albums.first.songs << song
+          song = create(:song, :has_artist, title: "Dave Mathews Band")
 
           search = Search.new(query: "MATHEWS")
           results = search.find

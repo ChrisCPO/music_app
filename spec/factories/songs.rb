@@ -4,7 +4,7 @@ FactoryGirl.define do
   end
 
   trait :has_artist do
-    after(:create) do |song|
+    before(:create) do |song|
       artist = create(:artist)
       album = create(:album, artist: artist)
       song.album = album
