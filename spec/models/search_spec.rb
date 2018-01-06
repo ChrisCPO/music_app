@@ -107,4 +107,21 @@ describe Search do
       end
     end
   end
+
+  describe "#results?" do
+    it "returns false if there are no results" do
+      search = Search.new
+
+      expect(search.results?).to eq false
+    end
+
+    it "returns false if there are no results" do
+      search = Search.new
+      allow(search).to receive(:find_results) { [:song] }
+
+      search.find
+
+      expect(search.results?).to eq true
+    end
+  end
 end

@@ -1,0 +1,15 @@
+.search-results {
+}
+
+.search-results__subheader {
+  background-color: $yellow;
+  color: $dark-yellow;
+  text-align: center;
+  font-size: $font-small;
+  position: center;
+  padding: ($base-spacing / 10) 0 0 0;
+}
+
+.search-results__results {
+  margin: $base-spacing  0 0 0;
+}

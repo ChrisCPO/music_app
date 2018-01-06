@@ -1,6 +1,6 @@
 class Search
   include ActiveModel::Model
-  attr_writer :results
+
   attr_accessor :query
 
   QUERY_COLUMNS = [
@@ -16,6 +16,10 @@ class Search
 
   def results
     @results ||= []
+  end
+
+  def results?
+    results.any?
   end
 
   private

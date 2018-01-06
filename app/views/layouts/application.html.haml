@@ -5,12 +5,21 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "NOODP", :name => "ROBOTS"}/
     %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
-    %title= title
+    %title= t("titles.application")
     = stylesheet_link_tag :application, media: "all"
     = csrf_meta_tags
   %body{:class => body_class}
+    %header
+      %div.app-header
+        %h1.app-title
+          = t("titles.application")
+          %p.description
+            = t("description")
+        %div.app-header__search-form
+          = render "searches/search_form"
+
     = render "flashes"
-    %main
+    %main.main-container
       = yield
     = render "javascript"
     = render "css_overrides"
