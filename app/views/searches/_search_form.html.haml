@@ -1,4 +1,4 @@
-= simple_form_for @search, html: { id: "general-search"}, url: searches_path, method: :get do |form|
+= simple_form_for search_form, html: { id: "general-search"}, url: results_search_path, method: :get do |form|
   %div.flex-wrapper
     = form.input :query, label: false
     = form.submit "Search", id: "general-search-button", data: { disable_with: false }

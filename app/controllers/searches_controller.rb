@@ -1,14 +1,14 @@
 class SearchesController < ApplicationController
-  def new
+  def index
     if search_params
       @search = Search.new(search_params)
       @search.find
-      render :index
+      render :results
     end
     @search = Search.new
   end
 
-  def index
+  def results
     @search = Search.new(search_params)
     @search.find
 
