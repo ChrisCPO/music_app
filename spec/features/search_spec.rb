@@ -111,7 +111,7 @@ feature "User can Search", js: true do
 
           click_link song.title
 
-          expect(page).to have_content song.title
+          expect(page).to have_content(/#{song.title}/i)
         end
 
         it "can click link to that album" do
@@ -124,9 +124,9 @@ feature "User can Search", js: true do
 
           click_link album.title
 
-          expect(page).to have_content album.title
+          expect(page).to have_content(/#{album.title}/i)
           album.songs.each do |tune|
-            expect(page).to have_content tune.title
+            expect(page).to have_content(/#{tune.title}/i)
           end
         end
 
