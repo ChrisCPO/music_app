@@ -7,12 +7,12 @@ feature "User can Search", js: true do
         song = create(:song, :has_artist)
 
         visit searches_path
+
         fill_in "search_query", with: ""
         click_on "Search"
 
-        t = "searches.show.results_length"
-        length_text = I18n.t(t, length: 1, for: "")
-        expect(page).to_not have_content length_text
+        text = results_text(count: 0, query: "")
+        expect(page).to_not have_content text
         expect(page).to_not have_content song.title
         expect(page).to_not have_content song.artist.full_name
         expect(page).to_not have_content song.album.title
@@ -27,9 +27,8 @@ feature "User can Search", js: true do
       fill_in "search_query", with: query
       click_on "Search"
 
-      t = "searches.show.results_length"
-      length_text = I18n.t(t, length: 1, for: query)
-      expect(page).to have_content length_text
+      text = results_text(count: 1, query: query)
+      expect(page).to have_content text
       expect(page).to have_content song.title
       expect(page).to have_content song.artist.full_name
       expect(page).to have_content song.album.title
@@ -45,9 +44,8 @@ feature "User can Search", js: true do
         fill_in "search_query", with: second_word
         click_on "Search"
 
-        t = "searches.show.results_length"
-        length_text = I18n.t(t, length: 1, for: second_word)
-        expect(page).to have_content length_text
+        text = results_text(count: 1, query: second_word)
+        expect(page).to have_content text
         expect(page).to have_content song.title
       end
     end
@@ -59,9 +57,8 @@ feature "User can Search", js: true do
 
         visit "/searches?&search%5Bquery%5D=#{query}"
 
-        t = "searches.show.results_length"
-        length_text = I18n.t(t, length: 1, for: song.title)
-        expect(page).to have_content length_text
+        text = results_text(count: 1, query: song.title)
+        expect(page).to have_content text
         expect(page).to have_text song.title
       end
     end
@@ -78,9 +75,8 @@ feature "User can Search", js: true do
           click_link song.title
           page.go_back
 
-          t = "searches.show.results_length"
-          length_text = I18n.t(t, length: 1, for: song.title)
-          expect(page).to have_content length_text
+          text = results_text(count: 1, query: song.title)
+          expect(page).to have_content text
           expect(page).to have_text song.title
         end
       end
@@ -96,9 +92,8 @@ feature "User can Search", js: true do
         fill_in "search_query", with: first_word
         click_on "Search"
 
-        t = "searches.show.results_length"
-        length_text = I18n.t(t, length: 1, for: first_word)
-        expect(page).to have_content length_text
+        text = results_text(count: 1, query: first_word)
+        expect(page).to have_content text
         expect(page).to have_content song.title
       end
     end

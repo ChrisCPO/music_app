@@ -11,6 +11,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 # Extend this module in spec/support/features/*.rb
 module Features
   include Formulaic::Dsl
+  include Features::SearchHelper
 end
 
 module FactoryHelpers
