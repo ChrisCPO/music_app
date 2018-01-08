@@ -1,7 +1,7 @@
-.song
-  .song__title
+.song-result
+  .song-result__title
     %h1= link_to song.title, song_path(song)
-  .song__result-info
+  .song-result__info
     %p
       = t("songs.show.by") \
       = link_to song.artist.full_name, artist_path(song.artist)

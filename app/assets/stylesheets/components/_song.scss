@@ -1,4 +1,4 @@
-.song {
+.song-result {
   width: 100%;
   height: 60px;
   display: inline-flex;
@@ -13,16 +13,29 @@
   @include border-top-radius($base-border-radius);
 }
 
-.song__title {
+.song-result__title {
   flex-grow: 1;
 }
 
-.song__result-info {
+.song-result__info {
   display: flex;
   padding: $base-spacing;
   p {
     flex-grow: 1;
     padding: 0 ($base-spacing / 2);
     color: $medium-dark-green;
+  }
+}
+
+.song__title {
+  font-size: $font-large;
+  color: $dark-green;
+}
+
+.song__info {
+  margin: 1em;
+  h3 {
+    font-size: $font-large;
+    color: $medium-gray;
   }
 }

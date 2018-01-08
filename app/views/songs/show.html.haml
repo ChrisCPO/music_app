@@ -1,5 +1,16 @@
-.song
-  %h1= @song.title
-  .result-info
-    = link_to t(".artist", name: @song.artist.full_name), artist_path(@song.artist)
-    = link_to t(".album", name: @song.album.title), album_path(@song.album)
+.container
+  .song
+    .song__title
+      %h1= @song.title
+    .song__info
+      %h3
+        = t(".artist") \
+        = link_to @song.artist.full_name, artist_path(@song.artist)
+      %h3
+        = t(".album") \
+        = link_to  @song.album.title, album_path(@song.album)
+      %h3
+        = t(".released", year: @song.released)
+      %h3
+        = t(".rating") \
+        = render "shared/stars", count: @song.rating
