@@ -1,3 +1,7 @@
+@mixin margin-control() {
+  margin: 0 8% 0 8%;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -15,4 +19,21 @@ body {
 
 body {
   margin: 0;
+  background-color: $base-background-color;
+}
+
+header {
+  background-color: $secondary-background-color;
+}
+
+.app-header {
+  @include margin-control;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+main {
+  @include margin-control;
+  @include grid-container;
 }

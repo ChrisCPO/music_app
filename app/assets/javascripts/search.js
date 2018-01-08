@@ -2,7 +2,7 @@ $(document).ready(function(){
   let $searchForm = $("#general-search");
 
   let updateSearchResults = function(response) {
-    $resultsContainer = $("#search-results-container")
+    $resultsContainer = $("#search-results")
     $resultsContainer.html(response);
   };
 

@@ -9,6 +9,7 @@ ruby "2.4.1"
 
 gem "autoprefixer-rails"
 gem "delayed_job_active_record"
+gem "draper"
 gem "flutie"
 gem "haml"
 gem "honeybadger"

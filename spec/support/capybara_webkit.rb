@@ -1,3 +1,4 @@
+Capybara::Screenshot.prune_strategy = :keep_last_run
 Capybara.javascript_driver = :webkit
 
 Capybara::Webkit.configure do |config|

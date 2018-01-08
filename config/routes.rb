@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root "searches#new"
-  resource :search, only: [:new]
+  root "searches#index"
+
+  resource :search, only: [] do
+    get "results"
+  end
   resources :searches, only: [:index]
 
   resources :artists, only: [:show]

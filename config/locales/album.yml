@@ -3,3 +3,5 @@ en:
     show:
       by: "by "
       track: "track %{number}: "
+      rating: "Rating: "
+      released: "Released: %{year}"

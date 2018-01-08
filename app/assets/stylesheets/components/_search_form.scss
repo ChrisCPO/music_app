@@ -1,0 +1,29 @@
+.app-header__search-form {
+  margin-left: auto;
+  flex-grow: 3;
+}
+
+#general-search {
+  padding: $base-spacing;
+  max-width: 1000rem;
+
+  .flex-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .flex-wrapper > div {
+    flex: 1 1 auto;
+  }
+
+  #search_query {
+    margin: 0;
+    height: 100%;
+    @include border-right-radius(0);
+  }
+
+  #general-search-button{
+    @include border-left-radius(0);
+  }
+}

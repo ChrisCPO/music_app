@@ -1,10 +1,20 @@
-.album
-  %h1= @album.title
-  = t(".by") \
-  = link_to @album.artist.full_name, artist_path(@album.artist)
-  %ol
-  - @album.songs.each.with_index do |song, index|
-    - index += 1
-    %li
-      = t(".track", number: index)
-      = link_to song.title, song_path(song)
+.container
+  .album
+    .content__title
+      %h1= @album.title
+    .content__info
+      %h3
+        = t(".by") \
+        = link_to @album.artist.full_name, artist_path(@album.artist)
+      %h3
+        = t(".released", year: @album.released)
+      %h3
+        = t(".rating") \
+        = render "shared/stars", count: @album.rating
+    .content__list
+      %ol
+        - @album.songs.each.with_index do |song, index|
+          - index += 1
+          %li
+            = t(".track", number: index)
+            = link_to song.decorate.title, song_path(song)
