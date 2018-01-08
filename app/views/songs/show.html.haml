@@ -1,8 +1,8 @@
 .container
   .song
-    .song__title
+    .content__title
       %h1= @song.title
-    .song__info
+    .content__info
       %h3
         = t(".artist") \
         = link_to @song.artist.full_name, artist_path(@song.artist)
