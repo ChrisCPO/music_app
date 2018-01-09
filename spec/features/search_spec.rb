@@ -50,6 +50,18 @@ feature "User can Search", js: true do
       end
     end
 
+    context "user searches from non search page" do
+      it "chages url to search index" do
+        song = create(:song, :has_artist)
+        visit song_path(song)
+
+        fill_in "search_query", with: song.artist.first_name
+        click_on "Search"
+
+        expect(current_path).to_not have_text "/songs/#{song.id}"
+      end
+    end
+
     context "raw url" do
       it "returns search results of params in url" do
         song = create(:song, :has_artist)

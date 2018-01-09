@@ -30,11 +30,17 @@ $(document).ready(function(){
 
   let submitForm = function(event) {
     event.preventDefault();
-
     let query = $searchForm.find("#search_query").val()
+
     if( query != "" ) {
-      history.pushState(null, "",`?${$searchForm.serialize()}`);
-      perform();
+      let newUrl = `/searches?${$searchForm.serialize()}`
+
+      if (!window.location.href.includes("/searches")) {
+        window.location = newUrl
+      } else {
+        history.pushState(null, "", newUrl);
+        perform();
+      }
     };
   };
 
