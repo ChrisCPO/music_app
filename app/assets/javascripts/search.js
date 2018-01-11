@@ -4,8 +4,12 @@ $(document).ready(function(){
   let $advancedOptionsForm = $("#adv-search-options-form");
 
   let advancedOptionsData = function() {
-    let form = $advancedOptionsForm.serialize().match(/&search(.*)/g)[0];
-    return form;
+    let form = $advancedOptionsForm.serialize().match(/&search(.*)/g);
+    if (form) {
+      return form[0];
+    } else {
+      return "";
+    }
   };
 
   let formData = function(){
