@@ -10,7 +10,7 @@
         = t(".album") \
         = link_to  @song.album.title, album_path(@song.album)
       %h3
-        = t(".released", year: @song.released)
+        = t(".released", year: @song.released_year)
       %h3
         = t(".rating") \
         = render "shared/stars", count: @song.rating

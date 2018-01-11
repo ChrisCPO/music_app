@@ -124,4 +124,40 @@ describe Search do
       expect(search.results?).to eq true
     end
   end
+
+  describe "with advanced options" do
+    context "with release year" do
+      it "returns the song with the matching release year" do
+        title = "Crazy Cool"
+        song_1 = create(:song, :has_artist, title: title)
+        song_2 = create(:song, :has_artist, title: title)
+
+        options = {
+          query: title,
+          advanced_search_options: { release_year: song_1.release_date.year }
+        }
+        search = Search.new(options)
+        results = search.find
+
+        expect(results.first).to eq song_1
+      end
+    end
+
+    context "with rating" do
+      it "returns the song with the matching rating" do
+        title = "Crazy Cool"
+        song_1 = create(:song, :has_artist, title: title)
+        song_2 = create(:song, :has_artist, title: title)
+
+        options = {
+          query: title,
+          advanced_search_options: { rating: song_1.rating }
+        }
+        search = Search.new(options)
+        results = search.find
+
+        expect(results.first).to eq song_1
+      end
+    end
+  end
 end

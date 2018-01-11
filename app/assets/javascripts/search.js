@@ -1,7 +1,20 @@
 $(document).ready(function(){
   let $searchForm = $("#general-search");
+  let $advancedOptions = $("#adv-search-options");
+  let $advancedOptionsForm = $("#adv-search-options-form");
+
+  let advancedOptionsData = function() {
+    let form = $advancedOptionsForm.serialize().match(/&search(.*)/g)[0];
+    return form;
+  };
+
+  let formData = function(){
+    let data =  $searchForm.serialize() + advancedOptionsData();
+    return data;
+  };
 
   let updateSearchResults = function(response) {
+    $advancedOptions.show()
     $resultsContainer = $("#search-results")
     $resultsContainer.html(response);
   };
@@ -14,7 +27,7 @@ $(document).ready(function(){
   let perform = function(data) {
     disableSearchButton(true)
 
-    let queryData = data || $searchForm.serialize();
+    let queryData = data || formData()
     let request = $.ajax({
       type: "GET",
       url: $searchForm.attr("action"),
@@ -33,7 +46,7 @@ $(document).ready(function(){
     let query = $searchForm.find("#search_query").val()
 
     if( query != "" ) {
-      let newUrl = `/searches?${$searchForm.serialize()}`
+      let newUrl = `/searches?${formData()}`
 
       if (!window.location.href.includes("/searches")) {
         window.location = newUrl

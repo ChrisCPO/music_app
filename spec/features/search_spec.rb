@@ -111,6 +111,50 @@ feature "User can Search", js: true do
     end
   end
 
+  feature "advanced searching options" do
+    feature "advanced options available" do
+      context "only renders if there was a basic search result" do
+        it "does not render advanced options" do
+          song = create(:song, :has_artist)
+
+          visit searches_path
+          expect(page).to_not have_field("Release year")
+          expect(page).to_not have_field("Rating")
+        end
+
+        it "renders advanced options" do
+          pending("capybara is not running js :/")
+          song = create(:song, :has_artist)
+
+          visit searches_path
+          fill_in "search_query", with: song.title
+          click_on "Search"
+
+          expect(page).to have_field("Release year")
+          expect(page).to have_field("Rating")
+        end
+      end
+    end
+
+    feature "search by release date" do
+      it "returns songs matching by query and release date" do
+        pending("capybara is not running js :/")
+        title = "Crazy Cool"
+        song_1 = create(:song, :has_artist, title: title)
+        song_2 = create(:song, :has_artist, title: title)
+
+        params = { search: { query: song_1.title } }
+        visit searches_path(params)
+
+        fill_in "Release year", with: song_1.release_date.year
+        click_on "Search"
+
+        text = results_text(count: 1, query: title)
+        expect(page).to have_content text
+      end
+    end
+  end
+
   feature "after searching for a song a user can" do
     feature "view specific results" do
       context "by song title" do
