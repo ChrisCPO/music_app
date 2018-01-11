@@ -3,9 +3,9 @@ class SearchesController < ApplicationController
     if search_params
       @search = Search.new(search_params)
       @search.find
-      render :results
+    else
+      @search = Search.new
     end
-    @search = Search.new
   end
 
   def results
@@ -19,7 +19,7 @@ class SearchesController < ApplicationController
 
   def search_params
     if params[:search]
-      params.require(:search).permit(:query)
+      params.require(:search).permit(:query, advanced_search_options: [:rating, :release_year])
     end
   end
 end

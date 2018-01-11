@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :song do
     title { musical_title }
+    rating {rand(1..10)}
+    release_date { new_release_date }
   end
 
   trait :has_artist do

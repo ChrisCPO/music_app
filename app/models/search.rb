@@ -10,6 +10,14 @@ class Search
     "artists.last_name",
   ]
 
+  def advanced_search_options=(new_options)
+    @advanced_options = AdvancedSearchOptions.new(new_options)
+  end
+
+  def advanced_options
+    @advanced_options ||= AdvancedSearchOptions.new
+  end
+
   def find
     @results = find_results
   end
@@ -27,7 +35,9 @@ class Search
   def find_results
     ilike = " ILIKE ?"
     full_query = QUERY_COLUMNS.join(" || ' ' || ") + ilike
-    Song.joins(:album).joins(:artist).where(full_query, wrapped_query)
+    advanced_options.with_queries do
+      Song.joins(:album).joins(:artist).where(full_query, wrapped_query)
+    end
   end
 
   def wrapped_query

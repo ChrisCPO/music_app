@@ -1,4 +1,4 @@
 en:
   searches:
     show:
-      results_length: "%{length} of possible results for '%{for}'"
+      results_length: "%{length} of possible %{results_word} for '%{for}'"

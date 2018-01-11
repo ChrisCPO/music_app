@@ -1,0 +1,17 @@
+#adv-search-options-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.advanced-search-options {
+  color: $blue;
+  font-size: $font-small;
+
+  input {
+    max-width: 5em;
+  }
+}
+
+.advanced-search-options__col {
+  flex-grow: 1;
+}

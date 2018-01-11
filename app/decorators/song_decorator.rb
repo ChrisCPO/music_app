@@ -9,7 +9,7 @@ class SongDecorator < Draper::Decorator
     rand(1..10)
   end
 
-  def released
-    rand(1945...Date.current.year)
+  def released_year
+    object.release_date.year
   end
 end
