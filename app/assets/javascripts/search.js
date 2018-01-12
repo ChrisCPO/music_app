@@ -52,11 +52,12 @@ $(document).ready(function(){
     if ( query != "" ) {
       var newUrl = "/searches?" + formData();
 
-      if (!window.location.pathname == "/searches") {
-        window.location = newUrl;
-      } else {
+      var userIsSearching = window.location.pathname == "/searches";
+      if (userIsSearching) {
         history.pushState(null, "", newUrl);
         perform();
+      } else {
+        window.location.href = newUrl;
       }
     };
   };

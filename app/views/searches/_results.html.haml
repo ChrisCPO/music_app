@@ -1,6 +1,6 @@
 .search-results#search-results
+  .search-results__subheader
+    %h4= results_text(@search)
   -if @search.results?
-    .search-results__subheader
-      %h4= results_text(@search)
     .search-results__results
       = render @search.results

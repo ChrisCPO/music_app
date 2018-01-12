@@ -12,26 +12,59 @@ feature "User can Search", js: true do
         click_on "Search"
 
         text = results_text(count: 0, query: "")
-        expect(page).to_not have_content text
+        expect(page).to have_content text
         expect(page).to_not have_content song.title
         expect(page).to_not have_content song.artist.full_name
         expect(page).to_not have_content song.album.title
       end
     end
 
-    it "returns a song" do
-      song = create(:song, :has_artist)
-      query = song.title
+    context "Basic Searching" do
+      it "returns a song" do
+        song = create(:song, :has_artist)
+        query = song.title
 
-      visit searches_path
-      fill_in "search_query", with: query
-      click_on "Search"
+        visit searches_path
+        fill_in "search_query", with: query
+        click_on "Search"
 
-      text = results_text(count: 1, query: query)
-      expect(page).to have_content text
-      expect(page).to have_content song.title
-      expect(page).to have_content song.artist.full_name
-      expect(page).to have_content song.album.title
+        text = results_text(count: 1, query: query)
+        expect(page).to have_content text
+        expect(page).to have_content song.title
+        expect(page).to have_content song.artist.full_name
+        expect(page).to have_content song.album.title
+      end
+
+      context "no results" do
+        it "renders no results text" do
+          song = create(:song, :has_artist, title: "foo")
+          query = "bar"
+
+          visit searches_path
+          fill_in "search_query", with: query
+          click_on "Search"
+
+          text = results_text(count: 0, query: query)
+          expect(page).to have_content text
+        end
+      end
+
+      context "from root page" do
+        it "returns a song" do
+          song = create(:song, :has_artist)
+          query = song.title
+
+          visit root_path
+          fill_in "search_query", with: query
+          click_on "Search"
+
+          text = results_text(count: 1, query: query)
+          expect(page).to have_content text
+          expect(page).to have_content song.title
+          expect(page).to have_content song.artist.full_name
+          expect(page).to have_content song.album.title
+        end
+      end
     end
 
     context "forward searching" do
