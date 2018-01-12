@@ -1,10 +1,10 @@
 $(document).ready(function(){
-  let $searchForm = $("#general-search");
-  let $advancedOptions = $("#adv-search-options");
-  let $advancedOptionsForm = $("#adv-search-options-form");
+  var $searchForm = $("#general-search");
+  var $advancedOptions = $("#adv-search-options");
+  var $advancedOptionsForm = $("#adv-search-options-form");
 
-  let advancedOptionsData = function() {
-    let form = $advancedOptionsForm.serialize().match(/&search(.*)/g);
+  var advancedOptionsData = function() {
+    var form = $advancedOptionsForm.serialize().match(/&search(.*)/g);
     if (form) {
       return form[0];
     } else {
@@ -12,30 +12,30 @@ $(document).ready(function(){
     }
   };
 
-  let formData = function(){
-    let data =  $searchForm.serialize() + advancedOptionsData();
+  var formData = function(){
+    var data =  $searchForm.serialize() + advancedOptionsData();
     return data;
   };
 
-  let updateSearchResults = function(response) {
-    $advancedOptions.show()
-    $resultsContainer = $("#search-results")
+  var updateSearchResults = function(response) {
+    $advancedOptions.show();
+    $resultsContainer = $("#search-results");
     $resultsContainer.html(response);
   };
 
-  let disableSearchButton = function(setTo) {
-    let $searchFormButton = $("#general-search-button");
+  var disableSearchButton = function(setTo) {
+    var $searchFormButton = $("#general-search-button");
     $searchFormButton.prop("disabled", setTo);
   };
 
-  let perform = function(data) {
-    disableSearchButton(true)
+  var perform = function(data) {
+    disableSearchButton(true);
 
-    let queryData = data || formData()
-    let request = $.ajax({
+    var queryData = data || formData();
+    var request = $.ajax({
       type: "GET",
       url: $searchForm.attr("action"),
-      data: queryData,
+      data: queryData
     });
 
     request.done(updateSearchResults);
@@ -45,15 +45,15 @@ $(document).ready(function(){
     });
   };
 
-  let submitForm = function(event) {
+  var submitForm = function(event) {
     event.preventDefault();
-    let query = $searchForm.find("#search_query").val()
+    var query = $searchForm.find("#search_query").val();
 
-    if( query != "" ) {
-      let newUrl = `/searches?${formData()}`
+    if ( query != "" ) {
+      var newUrl = "/searches?" + formData();
 
-      if (!window.location.href.includes("/searches")) {
-        window.location = newUrl
+      if (!window.location.pathname == "/searches") {
+        window.location = newUrl;
       } else {
         history.pushState(null, "", newUrl);
         perform();
@@ -62,7 +62,7 @@ $(document).ready(function(){
   };
 
   $(window).bind("popstate", function() {
-    let query = location.search.replace("?", "");
+    var query = location.search.replace("?", "");
     perform(query);
   });
 
