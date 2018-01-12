@@ -3,7 +3,7 @@ module SearchHelper
     @search || Search.new
   end
 
-  def hide_advanced_options
+  def show_advanced_options
     !@search.results?
   end
 
