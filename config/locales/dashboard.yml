@@ -1,0 +1,6 @@
+en:
+  dashboards:
+    show:
+      trending:
+        artists:
+          title: "Trending Artists"

@@ -20,4 +20,18 @@ RSpec.describe Artist, type: :model do
       expect(artist.full_name).to eq full_name
     end
   end
+
+  context "Scopes" do
+    describe ".trending" do
+      it "returns the 5 artists with highest rating" do
+        trending = create_list(:artist, 5,rating: 10)
+        create_list(:artist, 5, rating: 5)
+
+        found = Artist.trending
+
+        expect(found.count).to eq 5
+        expect(trending - found).to eq []
+      end
+    end
+  end
 end

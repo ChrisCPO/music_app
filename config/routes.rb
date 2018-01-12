@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root "searches#index"
+  root "dashboards#show"
+
+  resource :dashboard, only: [:show]
 
   resource :search, only: [] do
     get "results"

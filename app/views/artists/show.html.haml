@@ -3,7 +3,11 @@
     .content__title
       %h1= @artist.full_name
     .content__image
-      = image_tag profile_image_source_link
+      = image_tag profile_image_source_link(@artist)
+    .content__info
+      %h3
+        = t(".rating") \
+        = render "shared/stars", count: @artist.rating
     .content__list
       %ol
         =t(".albums")

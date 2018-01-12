@@ -12,8 +12,9 @@ Dir[Rails.root.join("spec/support/factory_helpers/*.rb")].sort.each { |file| req
 
 include FactoryGirl::Syntax::Methods
 include FactoryHelpers::NameGenerator
+include FactoryHelpers::DateHelpers
 
-30.times do
+50.times do
   rand_num = rand(1..3)
   create(:artist, :with_album, album_count: rand_num)
 end
