@@ -2,3 +2,4 @@ en:
   artists:
     show:
       albums: "Albums"
+      rating: "Rating"

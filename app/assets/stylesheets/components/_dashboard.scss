@@ -1,0 +1,28 @@
+$custom-grid--trending: (
+  columns: 5,
+  gutter: 60px,
+);
+
+.trending_artists__title {
+  text-align: center;
+  color: $dark-yellow;
+  font-size: $font-xlarge;
+  background-color: $medium-light-yellow;
+}
+
+.trending_artists {
+  margin-top: 2em;
+  @include grid-collapse($custom-grid--trending);
+  @include grid-container;
+}
+
+.artist__title {
+  font-size: $font-large;
+  @include padding(1em null)
+}
+
+.artist_column {
+  text-align: center;
+  @include grid-column(1, $custom-grid--trending);
+  max-height: 3em;
+}

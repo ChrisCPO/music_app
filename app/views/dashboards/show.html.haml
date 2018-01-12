@@ -1,0 +1,5 @@
+.container
+  .trending_artists__title
+    = t("dashboards.show.trending.artists.title")
+  .trending_artists
+    = render partial: "trending_artist", collection: @dashboard.trending_artists
