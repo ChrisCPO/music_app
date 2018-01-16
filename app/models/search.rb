@@ -3,6 +3,7 @@ class Search
 
   attr_accessor :query
 
+  LIMIT = 20
   QUERY_COLUMNS = [
     "songs.title",
     "albums.title",
@@ -34,15 +35,24 @@ class Search
 
   def find_results
     ilike = " ILIKE ?"
-    full_query = QUERY_COLUMNS.join(" || ' ' || ") + ilike
+    query_colums = QUERY_COLUMNS.join(" || ' ' || ")
+    full_query = query_colums + ilike
+
     advanced_options.with_queries do
-      Song.joins(:album).joins(:artist).where(full_query, wrapped_query)
+      Song.joins(:album).joins(:artist).
+        where(full_query, wrapped_query).
+        order("position('#{cleaned_query}' in #{query_colums}) ASC").
+        limit(LIMIT)
     end
   end
 
   def wrapped_query
     if query.present?
-      "%#{query.squish}%"
+      "%#{cleaned_query}%"
     end
+  end
+
+  def cleaned_query
+    @query.squish.gsub("'", "")
   end
 end

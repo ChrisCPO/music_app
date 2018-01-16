@@ -12,10 +12,32 @@ describe Search do
       expect(results.length).to eq 1
     end
 
+    context "results limit" do
+      it "limits to 20" do
+        query = "foo"
+        song = create_list(:song, 25, :has_artist, title: query)
+
+        search = Search.new(query: query)
+        results = search.find
+
+        expect(results.length).to eq 20
+      end
+    end
+
     context "search quirks" do
       it "returns song matching query with random spaces" do
         song = create(:song, :has_artist, title: "foo bar")
         query = "    foo     bar "
+
+        search = Search.new(query: query)
+        results = search.find
+
+        expect(results.length).to eq 1
+      end
+
+      it "replaces ' with nospace" do
+        song = create(:song, :has_artist, title: "90s greatest")
+        query = "90's"
 
         search = Search.new(query: query)
         results = search.find
@@ -106,6 +128,61 @@ describe Search do
         end
       end
     end
+
+    context "with advanced options" do
+      context "with release year" do
+        it "returns the song with the matching release year" do
+          title = "Crazy Cool"
+          song_1 = create(:song, :has_artist, title: title)
+          song_2 = create(:song, :has_artist, title: title)
+
+          options = {
+            query: title,
+            advanced_search_options: { release_year: song_1.release_date.year }
+          }
+          search = Search.new(options)
+          results = search.find
+
+          expect(results.first).to eq song_1
+        end
+      end
+
+      context "with rating" do
+        it "returns the song with the matching rating" do
+          title = "Crazy Cool"
+          song_1 = create(:song, :has_artist, title: title)
+          song_2 = create(:song, :has_artist, title: title)
+
+          options = {
+            query: title,
+            advanced_search_options: { rating: song_1.rating }
+          }
+          search = Search.new(options)
+          results = search.find
+
+          expect(results.first).to eq song_1
+        end
+      end
+    end
+
+    context "with sorted results" do
+      context "search by song title" do
+        it "returns results in sorted by best match" do
+          song_1 = create(:song, :has_artist, title: "bar")
+          song_2 = create(:song, :has_artist, title: "a fooman")
+          song_3 = create(:song, :has_artist, title: "foo")
+          song_4 = create(:song, :has_artist, title: "chickenfoo")
+
+          options = {
+            query: "foo",
+          }
+          search = Search.new(options)
+          results = search.find
+
+          expect(results.first).to eq song_3
+        end
+      end
+    end
   end
 
   describe "#results?" do
@@ -122,42 +199,6 @@ describe Search do
       search.find
 
       expect(search.results?).to eq true
-    end
-  end
-
-  describe "with advanced options" do
-    context "with release year" do
-      it "returns the song with the matching release year" do
-        title = "Crazy Cool"
-        song_1 = create(:song, :has_artist, title: title)
-        song_2 = create(:song, :has_artist, title: title)
-
-        options = {
-          query: title,
-          advanced_search_options: { release_year: song_1.release_date.year }
-        }
-        search = Search.new(options)
-        results = search.find
-
-        expect(results.first).to eq song_1
-      end
-    end
-
-    context "with rating" do
-      it "returns the song with the matching rating" do
-        title = "Crazy Cool"
-        song_1 = create(:song, :has_artist, title: title)
-        song_2 = create(:song, :has_artist, title: title)
-
-        options = {
-          query: title,
-          advanced_search_options: { rating: song_1.rating }
-        }
-        search = Search.new(options)
-        results = search.find
-
-        expect(results.first).to eq song_1
-      end
     end
   end
 end
