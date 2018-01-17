@@ -1,10 +1,6 @@
 class AlbumDecorator < Draper::Decorator
   delegate_all
 
-  def title
-    object.title.capitalize
-  end
-
   def rating
     rand(1..10)
   end

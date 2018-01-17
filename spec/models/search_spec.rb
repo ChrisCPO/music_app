@@ -201,4 +201,20 @@ describe Search do
       expect(search.results?).to eq true
     end
   end
+
+  describe "#decorate_results" do
+    it "decorates the results" do
+      song = create(:song, :has_artist)
+
+      options = {
+        query: song.title,
+      }
+      search = Search.new(options)
+      search.find
+      results = search.decorate_results
+
+      expect(results.first).to eq song
+      expect(results.first.released_year).to eq song.decorate.released_year
+    end
+  end
 end

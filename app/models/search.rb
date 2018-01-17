@@ -31,6 +31,10 @@ class Search
     results.any?
   end
 
+  def decorate_results
+    @results = SongDecorator.decorate_collection(@results)
+  end
+
   private
 
   def find_results

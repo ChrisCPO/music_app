@@ -1,0 +1,17 @@
+- song = song_result
+
+.song-result
+  .song-result__title
+    %h1= link_to song.title, song_path(song)
+  .song-result__info
+    %p
+      = t("songs.show.by") \
+      = link_to song.artist.decorate.full_name, artist_path(song.artist)
+    %p
+      = t("songs.show.from") \
+      = link_to song.album.decorate.title, album_path(song.album)
+    %p
+      = t("songs.show.released", year: song.released_year)
+    %p
+      = t("songs.show.rating") \
+      = render "shared/stars", count: song.rating
