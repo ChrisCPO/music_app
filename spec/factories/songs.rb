@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :song do
     title { musical_title }
-    rating {rand(1..10)}
+    rating { rand(Rating::RANGE) }
     release_date { new_release_date }
   end
 

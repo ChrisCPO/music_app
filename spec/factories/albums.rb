@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :album do
     title { musical_title }
+    rating { rand(Rating::RANGE) }
   end
 
   trait :with_artist do

@@ -23,8 +23,14 @@
   flex-wrap: wrap;
   padding: ($base-spacing /3) 0;
   p {
-    flex-grow: 1;
+    flex-grow: 0;
+    display: block;
     padding: 0 ($base-spacing / 2);
     color: $medium-dark-green;
   }
+}
+
+.song-result__dark-green {
+  display: inline-block;
+  color: $dark-green;
 }

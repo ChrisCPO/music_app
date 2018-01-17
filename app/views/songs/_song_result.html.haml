@@ -11,7 +11,10 @@
       = t("songs.show.from") \
       = link_to song.album.decorate.title, album_path(song.album)
     %p
-      = t("songs.show.released", year: song.released_year)
+      = t("songs.show.released", year: "" )\
+      .song-result__dark-green
+        = song.released_year
     %p
       = t("songs.show.rating") \
-      = render "shared/stars", count: song.rating
+      .song-result__dark-green
+        = song.short_rating

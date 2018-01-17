@@ -190,8 +190,8 @@ feature "User can Search", js: true do
     feature "search by rating" do
       it "returns songs matching by query and rating" do
         title = "Crazy cool"
-        song_1 = create(:song, :has_artist, title: title).decorate
-        song_2 = create(:song, :has_artist, title: title).decorate
+        song_1 = create(:song, :has_artist, title: title, rating: 3).decorate
+        song_2 = create(:song, :has_artist, title: title, rating: 4).decorate
 
         params = { search: { query: song_1.title } }
         visit searches_path(params)
