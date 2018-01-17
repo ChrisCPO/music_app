@@ -1,6 +1,11 @@
 #adv-search-options-form {
   display: flex;
   flex-direction: row;
+  max-width: 200px;
+}
+
+.title {
+  color: $medium-dark-green;
 }
 
 .advanced-search-options {

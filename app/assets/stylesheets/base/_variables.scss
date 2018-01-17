@@ -1,11 +1,7 @@
 @import "colors";
 
 //grids
-$mobile-grid: (
-  columns: 12,
-  gutter: 50px,
-  media: 700px,
-);
+$grid-width-tablet: 726px;
 
 // Typography
 $base-font-family: $font-stack-system;

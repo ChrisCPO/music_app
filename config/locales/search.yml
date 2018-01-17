@@ -1,4 +1,6 @@
 en:
   searches:
-    show:
+    index:
       results_length: "%{length} of possible %{results_word} for '%{for}'"
+    advanced_search_options:
+      title: "Advanced Search Options"

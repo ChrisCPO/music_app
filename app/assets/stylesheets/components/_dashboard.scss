@@ -1,18 +1,24 @@
-$custom-grid--trending: (
+$grid--trending: (
+  columns: 1,
+  gutter: 20px,
+);
+
+$grid--trending-tablet-up: (
   columns: 5,
-  gutter: 60px,
+  gutter: 50px,
+  media: $grid-width-tablet,
 );
 
 .trending_artists__title {
   text-align: center;
   color: $dark-yellow;
-  font-size: $font-xlarge;
+  font-size: $font-large;
   background-color: $medium-light-yellow;
 }
 
 .trending_artists {
   margin-top: 2em;
-  @include grid-collapse($custom-grid--trending);
+  @include grid-collapse($grid--trending);
   @include grid-container;
 }
 
@@ -23,6 +29,9 @@ $custom-grid--trending: (
 
 .artist_column {
   text-align: center;
-  @include grid-column(1, $custom-grid--trending);
-  max-height: 3em;
+  @include grid-column(1, $grid--trending);
+
+  @include grid-media($grid--trending-tablet-up) {
+    @include grid-column(1, $grid--trending-tablet-up);
+  }
 }
