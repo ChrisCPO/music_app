@@ -1,5 +1,9 @@
 @mixin margin-control() {
   margin: 0 8% 0 8%;
+
+  @media screen and (max-width: $grid-width-tablet) {
+    margin: 0 1% 0 1%;
+  }
 }
 
 html {

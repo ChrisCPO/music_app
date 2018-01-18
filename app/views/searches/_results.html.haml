@@ -3,4 +3,4 @@
     %h4= results_text(@search)
   -if @search.results?
     .search-results__results
-      = render @search.results
+      = render partial: "songs/song_result", collection: @search.results

@@ -1,21 +1,25 @@
 class SearchesController < ApplicationController
   def index
     if search_params
-      @search = Search.new(search_params)
-      @search.find
+      search_results
     else
       @search = Search.new
     end
   end
 
   def results
-    @search = Search.new(search_params)
-    @search.find
+    search_results
 
     render partial: "searches/results", search: @search
   end
 
   private
+
+  def search_results
+    @search = Search.new(search_params)
+    @search.find
+    @search.decorate_results
+  end
 
   def search_params
     if params[:search]

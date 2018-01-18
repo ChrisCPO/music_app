@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :artist do
     first_name { Faker::Name.first_name  }
     last_name { Faker::Name.last_name  }
-    rating {rand(1..10)}
+    rating { rand(Rating::RANGE) }
   end
 
   trait :with_album do

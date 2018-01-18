@@ -7,7 +7,7 @@ module Features
         results_word: "result".pluralize(count)
       }
 
-      I18n.t("searches.show.results_length", text_options)
+      I18n.t("searches.index.results_length", text_options)
     end
   end
 end

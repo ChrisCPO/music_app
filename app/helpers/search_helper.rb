@@ -15,6 +15,6 @@ module SearchHelper
       for: search.query,
       results_word: "result".pluralize(count)
     }
-    t("searches.show.results_length", text_options)
+    t("searches.index.results_length", text_options)
   end
 end

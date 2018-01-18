@@ -1,4 +1,5 @@
 .advanced-search-options#adv-search-options{hidden: show_advanced_options}
+  %h1.title= t(".title")
   = simple_form_for search_form,
     html: { id: "adv-search-options-form" },
     url: results_search_path,
@@ -7,4 +8,7 @@
       .advanced-search-options__col
         = aso_form.input :release_year, as: :integer, min: 0
       .advanced-search-options__col
-        = aso_form.input :rating
+        = aso_form.input :rating,
+          as: :integer,
+          min: Rating::MIN,
+          max: Rating::MAX
