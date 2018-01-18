@@ -3,20 +3,20 @@
 .song-result
   .song-result__title
     %h1= link_to song.title, song_path(song)
-  .song-result__info--row
+  .song-result__info--column
     %p
       = t("songs.show.by") \
       = link_to song.artist.decorate.full_name, artist_path(song.artist)
-  .song-result__info--row
+  .song-result__info--column
     %p
       = t("songs.show.from") \
       = link_to song.album.decorate.title, album_path(song.album)
-  .song-result__info--row
+  .song-result__info--column
     %p
       = t("songs.show.released", year: "" )\
       %h1.song-result__dark-green
         = song.released_year
-  .song-result__info--row
+  .song-result__info--column
     %p
       = t("songs.show.rating") \
       %h1.song-result__dark-green

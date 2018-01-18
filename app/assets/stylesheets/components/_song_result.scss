@@ -12,9 +12,8 @@ $grid--song-result-tablet-up: (
 );
 
 .song-result {
-  @include grid-container;
   @include grid-collapse($grid--song-result);
-  // @include grid-visual(lightblue, $grid--song-result);
+  @include grid-container;
 }
 
 .border {
@@ -30,25 +29,29 @@ $grid--song-result-tablet-up: (
 
 
 .song-result__title {
-  @include grid-column($grid--song-result-max-columns, $grid--song-result);
-  @include padding($xsmall-spacing null null $xsmall-spacing);
+  @include grid-column(1, $grid--song-result);
 
+  @include grid-media($grid--song-result-tablet-up) {
+    @include grid-column(
+      $grid--song-result-max-columns,
+      $grid--song-result-tablet-up
+    );
+  }
 }
 
 .song-result__info {
 }
 
-.song-result__info--row {
+.song-result__info--column {
   @include grid-column(1, $grid--song-result);
 
+  @include grid-media($grid--song-result-tablet-up) {
+    @include grid-column(1, $grid--song-result-tablet-up);
+  }
   p {
     display: inline-block;
     padding: 0 ($base-spacing / 2);
     color: $medium-dark-green;
-  }
-
-  @include grid-media($grid--song-result-tablet-up) {
-    @include grid-column(1, $grid--song-result-tablet-up);
   }
 }
 
