@@ -4,7 +4,7 @@
     html: { id: "adv-search-options-form" },
     url: results_search_path,
     method: :get do |form|
-    = form.simple_fields_for @search.advanced_options do |aso_form|
+    = form.simple_fields_for @search.advanced_search_options do |aso_form|
       .advanced-search-options__col
         = aso_form.input :release_year, as: :integer, min: 0
       .advanced-search-options__col

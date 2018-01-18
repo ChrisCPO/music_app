@@ -12,6 +12,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 module Features
   include Formulaic::Dsl
   include Features::SearchHelper
+  include Features::JavaScriptHelpers
 end
 
 module FactoryHelpers

@@ -15,7 +15,7 @@ class Search
     @advanced_options = AdvancedSearchOptions.new(new_options)
   end
 
-  def advanced_options
+  def advanced_search_options
     @advanced_options ||= AdvancedSearchOptions.new
   end
 
@@ -43,7 +43,7 @@ class Search
     query_colums = QUERY_COLUMNS.join(" || ' ' || ")
     full_query = query_colums + ilike
 
-    advanced_options.with_queries do
+    advanced_search_options.with_queries do
       Song.joins(:album).joins(:artist).
         where(full_query, wrapped_query).
         order("position('#{string_query}' in #{query_colums}) ASC").
