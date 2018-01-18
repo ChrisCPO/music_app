@@ -168,6 +168,24 @@ feature "User can Search", js: true do
       end
     end
 
+    context "keypresses" do
+      feature "when enter key is pressed" do
+        it "submits as normal" do
+          song = create(:song, :has_artist).decorate
+
+          visit searches_path
+          fill_in "search_query", with: song.title
+          fill_in "Release year", with: song.release_date.year
+
+          input = "#search_advanced_search_options_release_year"
+          press_enter_on(input)
+
+          text = results_text(count: 1, query: song.title)
+          expect(page).to have_content text
+        end
+      end
+    end
+
     feature "search by release date" do
       it "returns songs matching by query and release date" do
         title = "Crazy cool"

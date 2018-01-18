@@ -68,4 +68,10 @@ $(document).ready(function(){
   });
 
   $searchForm.on("submit", submitForm);
+  $advancedOptions.on("keypress", function(event) {
+    var enterKey = 13;
+    if (event.which == enterKey) {
+      submitForm(event);
+    }
+  });
 });
