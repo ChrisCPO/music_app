@@ -35,14 +35,25 @@ describe Search do
         expect(results.length).to eq 1
       end
 
-      it "replaces ' with nospace" do
-        song = create(:song, :has_artist, title: "90s greatest")
+      it "excapes ' " do
+        song = create(:song, :has_artist, title: "90's greatest")
         query = "90's"
 
         search = Search.new(query: query)
         results = search.find
 
         expect(results.length).to eq 1
+      end
+
+      context "query is full of ' " do
+        it "excapes ' " do
+          song = create(:song, :has_artist, title: "90's greatest")
+          query = "2'00' 90's foo''d"
+
+          search = Search.new(query: query)
+
+          expect{ search.find.first }.not_to raise_error
+        end
       end
     end
 

@@ -21,6 +21,7 @@ class Search
 
   def find
     @results = find_results
+    @results
   end
 
   def results
@@ -45,18 +46,22 @@ class Search
     advanced_options.with_queries do
       Song.joins(:album).joins(:artist).
         where(full_query, wrapped_query).
-        order("position('#{cleaned_query}' in #{query_colums}) ASC").
+        order("position('#{string_query}' in #{query_colums}) ASC").
         limit(LIMIT)
     end
   end
 
   def wrapped_query
     if query.present?
-      "%#{cleaned_query}%"
+      "%#{prepared_query}%"
     end
   end
 
-  def cleaned_query
-    @query.squish.gsub("'", "")
+  def string_query
+    prepared_query.gsub("'", "''")
+  end
+
+  def prepared_query
+    @query.squish
   end
 end
