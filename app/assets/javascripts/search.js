@@ -2,6 +2,7 @@ $(document).ready(function(){
   var $searchForm = $("#general-search");
   var $advancedOptions = $("#adv-search-options");
   var $advancedOptionsForm = $("#adv-search-options-form");
+  var $advancedOptionsClearLink = $("#aso-clear-filters");
 
   var advancedOptionsData = function() {
     var form = $advancedOptionsForm.serialize().match(/&search(.*)/g);
@@ -62,12 +63,19 @@ $(document).ready(function(){
     };
   };
 
+  var clearOptions = function(event) {
+    event.preventDefault();
+    $advancedOptionsForm.trigger("reset");
+    window.location.href = "/searches?" + $searchForm.serialize();
+  };
+
   $(window).bind("popstate", function() {
     var query = location.search.replace("?", "");
     perform(query);
   });
 
   $searchForm.on("submit", submitForm);
+  $advancedOptionsClearLink.on("click", clearOptions);
   $advancedOptions.on("keypress", function(event) {
     var enterKey = 13;
     if (event.which == enterKey) {

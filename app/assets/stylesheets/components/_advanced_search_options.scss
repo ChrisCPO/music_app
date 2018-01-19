@@ -4,8 +4,16 @@
   max-width: 200px;
 }
 
-.title {
+.advanced-search-options__title {
+  display: inline-block;
   color: $medium-dark-green;
+}
+
+.advanced-search-options__clear-filters{
+  padding-left: $base-spacing;
+  font-size: $font-small;
+  display: inline-block;
+  color: $action-color;
 }
 
 .advanced-search-options {
