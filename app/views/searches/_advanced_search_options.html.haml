@@ -1,0 +1,16 @@
+.advanced-search-options#adv-search-options{hidden: hide_advanced_options}
+  %h1.advanced-search-options__title= t(".title")
+  .advanced-search-options__clear-filters#aso-clear-filters
+    %h6= link_to t(".clear"), nil
+  = simple_form_for search_form,
+    html: { id: "adv-search-options-form" },
+    url: results_search_path,
+    method: :get do |form|
+    = form.simple_fields_for @search.advanced_search_options do |aso_form|
+      .advanced-search-options__col
+        = aso_form.input :release_year, as: :integer, min: 0
+      .advanced-search-options__col
+        = aso_form.input :rating,
+          as: :integer,
+          min: Rating::MIN,
+          max: Rating::MAX

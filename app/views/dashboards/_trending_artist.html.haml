@@ -1,0 +1,5 @@
+- artist = trending_artist
+.artist_column
+  = image_tag profile_image_source_link(artist)
+  .artist__title
+    = link_to artist.full_name, artist_path(artist.id)

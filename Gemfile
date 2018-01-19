@@ -9,7 +9,9 @@ ruby "2.4.1"
 
 gem "autoprefixer-rails"
 gem "delayed_job_active_record"
+gem "draper"
 gem "flutie"
+gem "haml"
 gem "honeybadger"
 gem "jquery-rails"
 gem "pg"
@@ -24,7 +26,6 @@ gem "sprockets", ">= 3.0.0"
 gem "suspenders"
 gem "title"
 gem "uglifier"
-
 
 group :development do
   gem "listen"
@@ -48,12 +49,14 @@ end
 group :test do
   gem "capybara-webkit"
   gem "database_cleaner"
+  gem "faker"
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "timecop"
   gem "webmock"
+  gem "capybara-screenshot"
 end
 
 group :production do

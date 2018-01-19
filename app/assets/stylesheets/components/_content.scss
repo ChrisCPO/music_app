@@ -1,0 +1,23 @@
+$content-font-color: $medium-gray;
+
+.content__title {
+  font-size: $font-large;
+  color: $dark-green;
+}
+
+.content__info {
+  color: $content-font-color;
+
+  h3 {
+    font-size: $font-large;
+  }
+}
+
+.content__list {
+  margin: 1em;
+  color: $content-font-color;
+
+  li {
+    color: $content-font-color;
+  }
+}

@@ -1,0 +1,11 @@
+.app-title {
+  align-items: center;
+  padding: $base-spacing 0 0 $base-spacing;
+  font-size: $font-xlarge;
+  flex-grow: 1;
+}
+
+.description {
+  font-size: $font-xsmall;
+  color: $light-green;
+}

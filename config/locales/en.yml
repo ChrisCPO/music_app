@@ -16,4 +16,5 @@ en:
         "%B %d"
 
   titles:
-    application: Music app
+    application: "Paradiddle"
+  description: "Your Favourite Songs"

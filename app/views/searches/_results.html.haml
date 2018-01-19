@@ -1,0 +1,6 @@
+.search-results#search-results
+  .search-results__subheader
+    %h4= results_text(@search)
+  -if @search.results?
+    .search-results__results
+      = render partial: "songs/song_result", collection: @search.results

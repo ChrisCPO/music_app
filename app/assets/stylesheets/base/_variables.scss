@@ -1,3 +1,8 @@
+@import "colors";
+
+//grids
+$grid-width-tablet: 786px;
+
 // Typography
 $base-font-family: $font-stack-system;
 $heading-font-family: $base-font-family;
@@ -6,29 +11,27 @@ $heading-font-family: $base-font-family;
 $base-line-height: 1.5;
 $heading-line-height: 1.2;
 
+//text-size
+$font-xlarge: 2.5em;
+$font-large: 1.5em;
+$font-medium: 1.25em;
+$font-small: .85em;
+$font-xsmall: .5em;
+
 // Other Sizes
 $base-border-radius: 3px;
-$base-spacing: 1.5em;
+$base-spacing: 1.5rem;
 $small-spacing: $base-spacing / 2;
+$xsmall-spacing: $base-spacing / 3;
 $base-z-index: 0;
-
-// Colors
-$blue: #1565c0;
-$dark-gray: #333;
-$medium-gray: #999;
-$light-gray: #ddd;
 
 // Font Colors
 $base-font-color: $dark-gray;
-$action-color: $blue;
+$action-color: $medium-dark-blue;
 
 // Border
 $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;
-
-// Background Colors
-$base-background-color: #fff;
-$secondary-background-color: tint($base-border-color, 75%);
 
 // Focus
 $focus-outline-color: transparentize($action-color, 0.4);

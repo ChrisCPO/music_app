@@ -1,0 +1,9 @@
+en:
+  songs:
+    show:
+      artist: "Artist: "
+      album: "From Album: "
+      rating: "Rating: "
+      released: "Released: %{year}"
+      by: "by:"
+      from: "from:"

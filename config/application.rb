@@ -21,6 +21,7 @@ module MusicApp
       generate.test_framework :rspec
       generate.view_specs false
     end
+    config.active_record.belongs_to_required_by_default = false
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.load_defaults 5.1
     config.generators.system_tests = nil

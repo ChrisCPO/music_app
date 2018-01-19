@@ -1,0 +1,16 @@
+.container
+  .album
+    .content__title
+      %h1= @artist.full_name
+    .content__image
+      = image_tag profile_image_source_link(@artist)
+    .content__info
+      %h3
+        = t(".rating") \
+        = render "shared/stars", count: @artist.rating
+    .content__list
+      %ol
+        =t(".albums")
+      - @artist.albums.each do |album|
+        %li
+          = link_to album.title, album_path(album)

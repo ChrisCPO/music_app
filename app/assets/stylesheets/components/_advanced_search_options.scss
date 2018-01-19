@@ -1,0 +1,30 @@
+#adv-search-options-form {
+  display: flex;
+  flex-direction: row;
+  max-width: 200px;
+}
+
+.advanced-search-options__title {
+  display: inline-block;
+  color: $medium-dark-green;
+}
+
+.advanced-search-options__clear-filters{
+  padding-left: $base-spacing;
+  font-size: $font-small;
+  display: inline-block;
+  color: $action-color;
+}
+
+.advanced-search-options {
+  color: $blue;
+  font-size: $font-small;
+
+  input {
+    max-width: 5em;
+  }
+}
+
+.advanced-search-options__col {
+  flex-grow: 1;
+}
