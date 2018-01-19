@@ -3,8 +3,8 @@ module SearchHelper
     @search || Search.new
   end
 
-  def show_advanced_options
-    !@search.results? || @search.advanced_search_options.has_attributes?
+  def hide_advanced_options
+    !@search.results? || !@search.advanced_search_options.has_attributes?
   end
 
   def results_text(search)

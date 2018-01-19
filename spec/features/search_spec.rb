@@ -221,6 +221,20 @@ feature "User can Search", js: true do
         expect(page).to have_content text
       end
     end
+
+    feature "link_to clear filters" do
+      it "when pressed clears filters" do
+        song = create(:song, :has_artist).decorate
+        visit searches_path
+        fill_in "Rating", with: song.rating
+        click_on "Search"
+
+        click_link I18n.t("searches.advanced_search_options.clear")
+
+        field = "Rating"
+        expect(find_field(field).value).to eq ""
+      end
+    end
   end
 
   feature "after searching for a song a user can" do
