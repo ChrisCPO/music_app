@@ -4,7 +4,7 @@ module SearchHelper
   end
 
   def hide_advanced_options
-    !@search.results? || !@search.advanced_search_options.has_attributes?
+    !@search.query.present?
   end
 
   def results_text(search)

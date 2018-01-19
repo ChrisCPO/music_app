@@ -146,7 +146,7 @@ feature "User can Search", js: true do
 
   feature "advanced searching options" do
     feature "advanced options available" do
-      context "only renders if there was a basic search result" do
+      context "only renders if there is a query" do
         it "does not render advanced options" do
           song = create(:song, :has_artist).decorate
 
